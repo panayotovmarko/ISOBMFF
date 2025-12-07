@@ -68,6 +68,9 @@ add_library(isobmff
 )
 
 target_include_directories(isobmff PUBLIC ../include)
+
+# Enable position-independent code so this static library can be linked into shared libraries
+set_target_properties(isobmff PROPERTIES POSITION_INDEPENDENT_CODE ON)
 if (WIN32)
   target_link_libraries(isobmff PUBLIC wsock32 ws2_32)
 endif()

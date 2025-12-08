@@ -41,17 +41,17 @@
 typedef struct arg_options {
   int debug;
   bool analyze_flag;
-  std::vector<char *> infiles;
+  std::vector<char*> infiles;
 } arg_options;
 
 /* default option values */
 static arg_options DEFAULT_OPTIONS{
     .debug = 0,
     .analyze_flag = true,
-    .infiles = std::vector<char *>(),
+    .infiles = std::vector<char*>(),
 };
 
-void usage(char *name) {
+void usage(char* name) {
   fprintf(stderr, "usage: %s [options]\n", name);
   fprintf(stderr, "where options are:\n");
   fprintf(stderr, "\t-d:\t\tIncrease debug verbosity [%i]\n",
@@ -74,7 +74,7 @@ enum {
   HELP_OPTION,
 };
 
-arg_options *parse_args(int argc, char *const *argv) {
+arg_options* parse_args(int argc, char* const* argv) {
   int c;
   static arg_options options;
 
@@ -149,8 +149,8 @@ arg_options *parse_args(int argc, char *const *argv) {
   return &options;
 }
 
-int main(int argc, char *const *argv) {
-  arg_options *options;
+int main(int argc, char* const* argv) {
+  arg_options* options;
 
   // parse args
   options = parse_args(argc, argv);
@@ -161,7 +161,7 @@ int main(int argc, char *const *argv) {
   if (options->debug > 0) {
     printf("options->debug = %i\n", options->debug);
     printf("options->analyze_flag = %i\n", options->analyze_flag);
-    for (const auto &infile : options->infiles) {
+    for (const auto& infile : options->infiles) {
       printf("options->infile = %s\n", infile);
     }
   }
@@ -181,7 +181,7 @@ int main(int argc, char *const *argv) {
     return EXIT_FAILURE;
   }
 
-  for (const auto &infile : options->infiles) {
+  for (const auto& infile : options->infiles) {
     path = infile;
     stream = std::ifstream(infile);
     stream = std::ifstream(infile);

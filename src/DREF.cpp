@@ -36,7 +36,7 @@ namespace ISOBMFF {
 class DREF::IMPL {
  public:
   IMPL();
-  IMPL(const IMPL &o);
+  IMPL(const IMPL& o);
   ~IMPL();
 
   std::vector<std::shared_ptr<Box> > _boxes;
@@ -44,30 +44,30 @@ class DREF::IMPL {
 
 DREF::DREF() : FullBox("dref"), impl(std::make_unique<IMPL>()) {}
 
-DREF::DREF(const DREF &o)
+DREF::DREF(const DREF& o)
     : FullBox(o), impl(std::make_unique<IMPL>(*(o.impl))) {}
 
-DREF::DREF(DREF &&o) noexcept : FullBox(std::move(o)), impl(std::move(o.impl)) {
+DREF::DREF(DREF&& o) noexcept : FullBox(std::move(o)), impl(std::move(o.impl)) {
   o.impl = nullptr;
 }
 
 DREF::~DREF() {}
 
-DREF &DREF::operator=(DREF o) {
+DREF& DREF::operator=(DREF o) {
   FullBox::operator=(o);
   swap(*(this), o);
 
   return *(this);
 }
 
-void swap(DREF &o1, DREF &o2) {
+void swap(DREF& o1, DREF& o2) {
   using std::swap;
 
-  swap(static_cast<FullBox &>(o1), static_cast<FullBox &>(o2));
+  swap(static_cast<FullBox&>(o1), static_cast<FullBox&>(o2));
   swap(o1.impl, o2.impl);
 }
 
-Error DREF::ReadData(Parser &parser, BinaryStream &stream) {
+Error DREF::ReadData(Parser& parser, BinaryStream& stream) {
   ContainerBox container("????");
   Error err;
 
@@ -86,7 +86,7 @@ Error DREF::ReadData(Parser &parser, BinaryStream &stream) {
   return Error();
 }
 
-void DREF::WriteDescription(std::ostream &os, std::size_t indentLevel) const {
+void DREF::WriteDescription(std::ostream& os, std::size_t indentLevel) const {
   FullBox::WriteDescription(os, indentLevel);
   Container::WriteBoxes(os, indentLevel);
 }
@@ -103,7 +103,7 @@ std::vector<std::shared_ptr<Box> > DREF::GetBoxes() const {
 
 DREF::IMPL::IMPL() {}
 
-DREF::IMPL::IMPL(const IMPL &o) : _boxes(o._boxes) {}
+DREF::IMPL::IMPL(const IMPL& o) : _boxes(o._boxes) {}
 
 DREF::IMPL::~IMPL() {}
 }  // namespace ISOBMFF

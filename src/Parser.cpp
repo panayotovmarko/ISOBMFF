@@ -40,6 +40,7 @@
 #include <ContainerBox.hpp>
 #include <DIMG.hpp>
 #include <DREF.hpp>
+#include <ELST.hpp>
 #include <FRMA.hpp>
 #include <FTYP.hpp>
 #include <HDLR.hpp>
@@ -321,6 +322,9 @@ void Parser::IMPL::RegisterDefaultBoxes() {
   });
   this->RegisterBox("dref", [=]() -> std::shared_ptr<Box> {
     return std::make_shared<DREF>();
+  });
+  this->RegisterBox("elst", [=]() -> std::shared_ptr<Box> {
+    return std::make_shared<ELST>();
   });
   this->RegisterBox("url ", [=]() -> std::shared_ptr<Box> {
     return std::make_shared<URL>();

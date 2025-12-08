@@ -19,6 +19,7 @@ add_library(isobmff
     CTTS.cpp
     DIMG.cpp
     DisplayableObject.cpp
+    ELST.cpp
     DisplayableObjectContainer.cpp
     DREF.cpp
     File.cpp
